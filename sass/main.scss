@@ -1,0 +1,266 @@
+$purple : #8631ee;
+$purple-700 : #98738E;
+$gray-200: #9D9CAD;
+$dark :#08060c;
+$enable-grid-classes: false;
+$form-range-thumb-bg: $purple;
+$enable-cssgrid: true;
+// $secondary:#DCE1F5;
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+html,
+body {
+  width: 100vw;
+  height: 100%;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+
+  &:hover {
+    color: $purple;
+  }
+}
+
+.icon {
+  height: 48px;
+  width: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+}
+
+.text-bg-purple {
+  background-color: $purple-500;
+}
+
+.active-link {
+  position: relative;
+  color: $indigo  !important;
+
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 100%;
+    right: 0;
+    top: 0;
+    width: 5px;
+    background-color: $indigo;
+    border-radius: 0.5rem 0 0rem 0.5rem
+  }
+}
+
+.inner-nav {
+  width: 250px !important;
+  transition: 0.3s;
+}
+
+nav {
+  transition: 0.3s;
+  overflow: hidden;
+  width: 60px !important;
+}
+
+.text-gray-200 {
+  color: $dark;
+}
+
+.xy-20 {
+  height: 20px;
+  width: 20px;
+}
+
+.ps-20 {
+  padding-left: 20px !important;
+}
+
+.fs-7 {
+  font-size: 0.85rem;
+}
+
+.fs-8 {
+  font-size: 0.65rem;
+}
+
+.icon-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.description-text {
+  visibility: hidden;
+  transition: 0.3s;
+  opacity: 0;
+}
+
+.dots {
+  transition: 0.3s;
+  padding-left: 12px;
+}
+
+.open-menu {
+  transition: 0.3s;
+}
+
+
+
+.bg-time,
+.bg-gallery-photo,
+.bg-study,
+.bg-about,
+.bg-contact,
+.bg-music {
+  background-position: right;
+  height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  background-color: #D1B7F1;
+}
+
+.bg-music {
+  background-image: url('../assets/imgs/Music-bro.png');
+  // color: ;
+}
+
+.bg-time {
+  background-image: url('../assets/imgs/time.png');
+}
+
+.bg-gallery-photo {
+  background-image: url('../assets/imgs/galleryphoto.png');
+}
+
+.bg-study {
+  background-image: url('../assets/imgs/study.png');
+}
+
+.bg-about {
+  background-image: url('../assets/imgs/aboutme.png');
+}
+
+.bg-contact {
+  background-image: url('../assets/imgs/contact.png');
+}
+
+.text-purple {
+  color: $purple  !important;
+}
+
+.text-purple-700 {
+  color: $purple-700;
+}
+
+button {
+  &:hover {
+    color: $purple  !important;
+  }
+}
+
+
+.control-icon {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0px 0px 3px 0px $purple;
+}
+
+.image-song {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.song-item {
+  &:hover {
+    background-color: $purple;
+    color: $white  !important;
+
+    h6 {
+      color: $white  !important;
+    }
+  }
+}
+.cd-thumb{
+  flex-shrink: 0;
+  img{
+    object-fit: cover;
+    height: 100%;
+
+  }
+}
+.active-song {
+  background-color: $purple;
+  color: $white  !important;
+  .cd-thumb{
+    animation: cd 10s linear infinite ;
+  }
+  h6 {
+    color: $white  !important;
+  }
+}
+@keyframes cd {
+  from{
+    transform : rotate(0deg) ;
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+.active-btn {
+  background-color: $purple;
+  color: $white  !important;
+}
+
+.btn-toggle-play,
+.btn-next,
+.btn-prev {
+  &:active {
+    background-color: $purple;
+    color: $white  !important;
+  }
+}
+
+
+// .progress::-webkit-slider-thumb {
+//     // -webkit-appearance: none;
+//     appearance: none;
+//     width: 20px;
+//     height: 10px;
+//     border-radius: 5px;
+//     background: $purple;
+//     cursor: pointer;
+
+// }
+
+// .progress {
+//     -webkit-appearance: none;
+//     width: 100%;
+//     height: 5px;
+//     border-radius: 5px;
+//     background: #d3d3d3;
+//     outline: none;
+//     opacity: 0.7;
+//     -webkit-transition: .2s;
+//     transition: opacity .2s;
+
+// }
