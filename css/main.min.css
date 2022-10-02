@@ -10583,6 +10583,9 @@ main {
   .overflow-md-hidden {
     overflow: hidden !important;
   }
+  .main-content {
+    width: calc(100% - 300px);
+  }
 }
 @media (min-width: 992px) {
   .overflow-lg-scroll {

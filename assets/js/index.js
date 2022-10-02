@@ -1,5 +1,4 @@
-// import music from "./music.js";
-// import { recentlyLists } from "./music.js";
+import music from "./music.js";
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 const openMenu = $(".open-menu");
@@ -83,8 +82,7 @@ window.addEventListener("load", () => {
 	window.addEventListener("resize", () => {
 		handleResizeWindow();
 	});
-	// if (window.location.href.indexOf("page/music.html") > -1) {
-	// 	music();
-	// 	console.log(recentlyLists)
-	// }
+	if (window.location.href.indexOf("page/music.html") > -1) {
+		music();
+	}
 });

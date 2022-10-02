@@ -288,6 +288,7 @@ main{
   .overflow-sm-hidden{
     overflow: hidden !important;
   }
+  
 }
 
 @include media-breakpoint-up(md) {
@@ -298,6 +299,9 @@ main{
     .overflow-md-hidden {
       overflow: hidden !important;
     }
+        .main-content {
+          width: calc(100% - 300px);
+        }
 }
 
 @include media-breakpoint-up(lg) {

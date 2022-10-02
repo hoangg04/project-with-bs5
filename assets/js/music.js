@@ -323,6 +323,5 @@ const app = {
 function music() {
 	app.start();
 }
-music();
 
 export default music;
