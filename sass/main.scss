@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap');
 $purple : #8631ee;
 $purple-700 : #98738E;
 $gray-200: #9D9CAD;
-$dark :#08060c;
+$dark :#151728;
+$dark-200 :#23253e;
 $enable-grid-classes: false;
 $form-range-thumb-bg: $purple;
 $enable-cssgrid: true;
 // $secondary:#DCE1F5;
 @import '../node_modules/bootstrap/scss/bootstrap';
+
 
 html,
 body {
@@ -44,7 +47,7 @@ a {
 
 .active-link {
   position: relative;
-  color: $indigo  !important;
+  color: $white  !important;
 
   &::before {
     content: "";
@@ -62,6 +65,10 @@ a {
 .inner-nav {
   width: 250px !important;
   transition: 0.3s;
+}
+.xy-36{
+  height: 36px;
+  width: 36px;
 }
 
 nav {
@@ -176,7 +183,7 @@ button {
   height: 40px;
   cursor: pointer;
   border-radius: 50%;
-  box-shadow: 0px 0px 3px 0px $purple;
+  box-shadow: 0px 0px 3px 0px $white;
 }
 
 .image-song {
@@ -239,28 +246,85 @@ button {
     color: $white  !important;
   }
 }
+.cd-img{
+  transition: height 0.05s;
+}
+main{
+  background-color: $dark;
+}
+.bg-dark-200 {
+  background-color: $dark-200;
+}
+.font-signika-negative{
+  font-family: 'Signika Negative', sans-serif;
+}
+.slider-item{
+  background-image: url(../assets/imgs/background.png);
+  background-repeat: no-repeat;
+    background-size: cover;
+}
+.btn-toggle-play{
+  background-image: url(../assets/imgs/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50px !important;
+  width: 50px !important;
+}
+.form-range::-webkit-slider-thumb{
+  background-image: url(../assets/imgs/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.form-range::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  background-color: $white;
+}
+ 
+
+@include media-breakpoint-up(sm) {
+  .overflow-sm-scroll{
+    overflow: scroll !important;
+  }
+  .overflow-sm-hidden{
+    overflow: hidden !important;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .overflow-md-scroll {
+      overflow: scroll !important;
+    }
+  
+    .overflow-md-hidden {
+      overflow: hidden !important;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+  .overflow-lg-scroll {
+      overflow: scroll !important;
+    }
+  
+    .overflow-lg-hidden {
+      overflow: hidden !important;
+    }
+}
 
 
-// .progress::-webkit-slider-thumb {
-//     // -webkit-appearance: none;
-//     appearance: none;
-//     width: 20px;
-//     height: 10px;
-//     border-radius: 5px;
-//     background: $purple;
-//     cursor: pointer;
+@include media-breakpoint-up(xl) {
+  .overflow-xl-scroll{
+    overflow: scroll !important;
+  }
+  .overflow-xl-hidden{
+    overflow: hidden !important;
+  }
+}
 
-// }
-
-// .progress {
-//     -webkit-appearance: none;
-//     width: 100%;
-//     height: 5px;
-//     border-radius: 5px;
-//     background: #d3d3d3;
-//     outline: none;
-//     opacity: 0.7;
-//     -webkit-transition: .2s;
-//     transition: opacity .2s;
-
-// }
+@include media-breakpoint-up(xxl) {
+  .overflow-xxl-scroll{
+    overflow: scroll !important;
+  }
+  .overflow-xxl-hidden{
+    overflow: hidden !important;
+  }
+}

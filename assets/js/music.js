@@ -10,9 +10,35 @@ const nextBtn = $(".btn-next");
 const prevBtn = $(".btn-prev");
 const repeatBtn = $(".btn-repeat");
 const randomBtn = $(".btn-random");
+const objectsEqual = (o1, o2) =>
+	Object.keys(o1).length === Object.keys(o2).length &&
+	Object.keys(o1).every((p) => o1[p] === o2[p]);
+const recentlyLists = [
+	{
+		name: "At My Worst",
+		singer: "Pink Sweat",
+		path: "../music/atmyworst.mp3",
+		image: "../assets/imgs/atmyworst.jpeg",
+	},
+	{
+		name: "Abcdfu",
+		singer: "Raftaar x Salim Merchant x Karma",
+		path: "../music/abcdfu.mp3",
+		image:
+			"https://1.bp.blogspot.com/-kX21dGUuTdM/X85ij1SBeEI/AAAAAAAAKK4/feboCtDKkls19cZw3glZWRdJ6J8alCm-gCNcBGAsYHQ/s16000/Tu%2BAana%2BPhir%2BSe%2BRap%2BSong%2BLyrics%2BBy%2BRaftaar.jpg",
+	},
+	{
+		name: "Beutiful In White",
+		singer: "Shane Filan",
+		path: "../music/beutifulinwhite.mp3",
+		image:
+			"https://zmp3-photo-fbcrawler.zmdcdn.me/avatars/a/6/a6945a50b698adb81c29021ef66c9dc7_1494246803.jpg",
+	},
+];
+
 const PLAYER_STORAGE_KEY = "user_player";
 const app = {
-	currentIndex: 0,
+	currentIndex: 3,
 	isRepeatSong: false,
 	isPlaying: false,
 	isProgress: false,
@@ -68,14 +94,16 @@ const app = {
 			return `
         <li data-index="${indexSong}" class="${
 				indexSong == app.currentIndex ? "active-song" : ""
-			} song-item d-flex p-2 shadow rounded g-col-12 g-col-md-8 g-start-md-3 g-col-lg-6 user-select-none cursor-pointer">
-					<div class="icon cd-thumb"><img class="img-fluid rounded-circle shadow" src="${song.image}" alt=""></div>
+			} song-item d-flex p-2 shadow rounded g-col-12 user-select-none cursor-pointer">
+					<div class="icon cd-thumb"><img class="img-fluid rounded-circle shadow" src="${
+						song.image
+					}" alt=""></div>
 					<div class="d-flex flex-column flex-grow-1 flex-shrink-1 ms-3">
-						<h6 class="fs-6 text-purple m-0">${song.name}</h6>
+						<h6 class="fs-6  m-0">${song.name}</h6>
 						<p class="m-0 fs-7 text-gray">${song.singer}</p>
 					</div>
 				</li>
-      `;
+    `;
 		});
 		playLists.innerHTML = htmls.join("\n");
 	},
@@ -103,6 +131,7 @@ const app = {
 				_this.nextSong();
 			}
 			audio.play();
+			_this.songIntoView();
 		};
 		prevBtn.onclick = () => {
 			if (_this.isRandom) {
@@ -129,10 +158,10 @@ const app = {
 			this.classList.toggle("active-btn", _this.isRandom);
 			repeatBtn.classList.remove("active-btn");
 		};
-
 		audio.onplay = () => {
 			_this.isPlaying = true;
 			playBtn.innerHTML = `<i class="fs-7 fa-solid fa-pause"></i>`;
+			_this.loadRecentlyList();
 		};
 		audio.onpause = () => {
 			_this.isPlaying = false;
@@ -219,11 +248,63 @@ const app = {
 		this.loadCurrentSong();
 		this.render();
 	},
+	songIntoView() {
+		setTimeout(() => {
+			$(".song-item.active-song").scrollIntoView({
+				behavior: "smooth",
+				block: "center",
+			});
+		}, 200);
+	},
 	loadCurrentSong() {
 		imageSong.src = this.currentSong.image;
 		audio.src = this.currentSong.path;
 		nameSong.textContent = this.currentSong.name;
 	},
+	renderRecently(input) {
+		let htmls = input.reverse().map((item) => {
+			return `
+			<div 
+        class="d-flex rounded g-col-12 user-select-none cursor-pointer align-content-center py-3 songs-recently-item">
+        <div class="icon cd-thumb d-none d-md-block">
+          <img class="img-fluid rounded-2 shadow" src="${item.image}" alt="">
+        </div>
+        <div class="text-truncate d-flex flex-column flex-grow-1 flex-shrink-1 ms-3 justify-content-center pe-2">
+          <h6 class="fs-6 m-0">${item.name}</h6>
+          <p class="text-truncate m-0 fs-7 text-gray">${item.singer}</p>
+        </div>
+        <div class="d-flex gap-2 align-items-center flex-shrink-0">
+          <span class="d-flex align-items-center">
+            <ion-icon class="fs-4" name="play-circle-sharp"></ion-icon>
+          </span>
+          <span class="d-flex align-items-center">
+            <ion-icon class="fs-6" name="ellipsis-horizontal-sharp"></ion-icon>
+          </span>
+        </div>
+      </div>
+			`;
+		});
+		$(".songs-recently").innerHTML = htmls.join("\n");
+	},
+	loadRecentlyList() {
+		  recentlyLists.every((item, index) => {
+			if (
+				!objectsEqual(
+					recentlyLists[index],
+					this.songs[this.currentIndex] && recentlyLists.length < 4
+				)
+			) {
+				recentlyLists.push(this.songs[this.currentIndex]);
+			} else {
+				if (recentlyLists.length >= 4) {
+					recentlyLists.shift();
+				}
+			}
+		});
+		const unique = [...new Set(recentlyLists)];
+		this.renderRecently(unique);
+	},
+
 	loadConfig() {
 		this.isRandom = this.config.isRandom || Boolean(false);
 		this.isRepeatSong = this.config.isRepeatSong || Boolean(false);
@@ -236,9 +317,12 @@ const app = {
 		this.loadCurrentSong();
 		this.handleEvent();
 		this.render();
+		this.loadRecentlyList();
 	},
 };
 function music() {
 	app.start();
 }
+music();
+
 export default music;
