@@ -10446,10 +10446,6 @@ nav {
   color: #98738E;
 }
 
-button:hover {
-  color: #8631ee !important;
-}
-
 .control-icon {
   width: 40px;
   height: 40px;
@@ -10568,6 +10564,24 @@ main {
   background-color: #fff;
 }
 
+.slider-item {
+  width: 250px;
+  height: 220px;
+  transition: 0.5s;
+}
+
+.tab-music {
+  transition: 0.5s;
+  visibility: visible !important;
+  opacity: 1;
+}
+
+.toggle-tab-music {
+  transition: 0.5s;
+  visibility: hidden !important;
+  opacity: 0;
+}
+
 @media (min-width: 576px) {
   .overflow-sm-scroll {
     overflow: scroll !important;
@@ -10575,16 +10589,24 @@ main {
   .overflow-sm-hidden {
     overflow: hidden !important;
   }
+  .main-content {
+    width: calc(100% - 300px);
+  }
+  .toggle-tab-music {
+    transition: 0.5s;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
 }
 @media (min-width: 768px) {
   .overflow-md-scroll {
     overflow: scroll !important;
   }
+  .slider-item {
+    width: 300px;
+  }
   .overflow-md-hidden {
     overflow: hidden !important;
-  }
-  .main-content {
-    width: calc(100% - 300px);
   }
 }
 @media (min-width: 992px) {
@@ -10593,6 +10615,9 @@ main {
   }
   .overflow-lg-hidden {
     overflow: hidden !important;
+  }
+  .slider-item {
+    width: 410px;
   }
 }
 @media (min-width: 1200px) {

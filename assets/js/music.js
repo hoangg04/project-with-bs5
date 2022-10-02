@@ -10,9 +10,13 @@ const nextBtn = $(".btn-next");
 const prevBtn = $(".btn-prev");
 const repeatBtn = $(".btn-repeat");
 const randomBtn = $(".btn-random");
-const objectsEqual = (o1, o2) =>
-	Object.keys(o1).length === Object.keys(o2).length &&
-	Object.keys(o1).every((p) => o1[p] === o2[p]);
+const slideMain = $(".slider-main");
+const nextSilde = $(".next-slide");
+const prevSlide = $(".prev-slide");
+const slideItems = $$(".slider-item");
+const tabMusic = $(".tab-music");
+const btnTabMusic = $(".btn-tab-music");
+let indexSlide = 0;
 const recentlyLists = [
 	{
 		name: "At My Worst",
@@ -38,8 +42,9 @@ const recentlyLists = [
 
 const PLAYER_STORAGE_KEY = "user_player";
 const app = {
-	currentIndex: 3,
+	currentIndex: Math.floor(Math.random() * 6),
 	isRepeatSong: false,
+	isOpenTabMusic: true,
 	isPlaying: false,
 	isProgress: false,
 	isRandom: false,
@@ -117,6 +122,7 @@ const app = {
 	handleEvent() {
 		const _this = this;
 		//playing Song
+		const widthSlideItem = slideItems[0].offsetWidth;
 		playBtn.onclick = () => {
 			if (_this.isPlaying) {
 				audio.pause();
@@ -220,6 +226,42 @@ const app = {
 				audio.play();
 			}
 		};
+		nextSilde.onclick = () => {
+			indexSlide++;
+			if (indexSlide >= 3) {
+				indexSlide = 2;
+			} else {
+				slideMain.style = `transform :translateX(${
+					-1 * indexSlide * widthSlideItem - 8
+				}px);
+        transition : transform 0.5s linear
+      `;
+			}
+		};
+		prevSlide.onclick = () => {
+			indexSlide--;
+			if (indexSlide < 0) {
+				indexSlide = 0;
+			} else {
+				slideMain.style = `transform :translateX(${
+					-1 * indexSlide * widthSlideItem + 8
+				}px);
+        transition : transform 0.5s linear
+      `;
+			}
+		};
+		btnTabMusic.onclick = () => {
+			if (window.innerWidth < 576) {
+				if(_this.isOpenTabMusic){
+					// tabMusic.classList.remove('d-none')
+					tabMusic.classList.remove("toggle-tab-music");
+					_this.isOpenTabMusic = false;
+				}else{
+					tabMusic.classList.add("toggle-tab-music");
+					_this.isOpenTabMusic = true;
+				}
+			}
+		};
 	},
 	nextSong() {
 		if (this.currentIndex >= this.songs.length - 1) {
@@ -287,24 +329,25 @@ const app = {
 		$(".songs-recently").innerHTML = htmls.join("\n");
 	},
 	loadRecentlyList() {
-		  recentlyLists.every((item, index) => {
-			if (
-				!objectsEqual(
-					recentlyLists[index],
-					this.songs[this.currentIndex] && recentlyLists.length < 4
-				)
-			) {
-				recentlyLists.push(this.songs[this.currentIndex]);
-			} else {
-				if (recentlyLists.length >= 4) {
-					recentlyLists.shift();
-				}
-			}
+		let check = recentlyLists.every((item, index) => {
+			return (
+				JSON.stringify(item) !== JSON.stringify(this.songs[this.currentIndex])
+			);
 		});
+		if (check) {
+			if (recentlyLists.length >= 3) {
+				recentlyLists.shift();
+			}
+			recentlyLists.push(this.songs[this.currentIndex]);
+		}
 		const unique = [...new Set(recentlyLists)];
 		this.renderRecently(unique);
 	},
-
+	handleSlide() {
+		// slideWrapper.onclick = () => {
+		// 	slideMain.style =`transform : translateX(0px) `
+		// };
+	},
 	loadConfig() {
 		this.isRandom = this.config.isRandom || Boolean(false);
 		this.isRepeatSong = this.config.isRepeatSong || Boolean(false);
@@ -318,6 +361,7 @@ const app = {
 		this.handleEvent();
 		this.render();
 		this.loadRecentlyList();
+		this.handleSlide();
 	},
 };
 function music() {

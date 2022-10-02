@@ -63,14 +63,14 @@ function handleResizeWindow() {
             position:fixed;
             top:0;
             left:0;
-            bottom:0;
+            height:100vh;
             z-index:9999;
         `;
 		mainContent.style = `
             margin-left: 60px;
         `;
 	} else {
-		navigation.style = ``;
+		navigation.style = `height: 100vh`;
 		mainContent.style = ``;
 	}
 }

@@ -9,7 +9,6 @@
 		integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link href="../css/main.min.css" rel="stylesheet">
-
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
 		crossorigin="anonymous"></script>
@@ -22,8 +21,8 @@
 
 <body>
 	<div class="d-flex h-100">
-		<nav class="bg-dark-200 text-light shadow d-flex flex-column py-2  justify-content-center h-100 flex-shrink-0">
-			<div class="d-flex mb-4 mt-2 gap-1 dots ">
+		<nav class="bg-dark-200 text-light shadow d-flex flex-column py-2 flex-shrink-0" style="height: 100vh;">
+			<div class="d-flex mb-4 pt-3 gap-1 dots flex-shrink-0">
 				<span class="dot bg-danger"></span>
 				<span class="dot bg-warning"></span>
 				<span class="dot bg-success"></span>
@@ -69,7 +68,7 @@
 					</a>
 				</li>
 				<li class="mb-1 position-relative w-100">
-					<a href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
+					<a href="./gallery-photo.html" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip"
 						data-bs-title="Gallery Photo"
 						class="icon rounded-2 item-link w-100 d-flex align-items-center justify-content-start ps-20 text-light">
 						<ion-icon class="fs-5 flex-shrink-0 " name="image-outline"></ion-icon>
@@ -113,10 +112,14 @@
 			</div>
 		</nav>
 		<main class="main flex-grow-1 flex-shrink-1 bg-opacity-25 ">
-			<section class="h-100 grid gap-0">
+			<section class="h-100 grid gap-0 position-relative user-select-none">
+				<button class="btn-tab-music border border-0 bg-dark-200 rounded-circle p-2 position-fixed end-0 mt-3 me-2 shadow"
+					style="height:40px ;width:40px;z-index:1000">
+					<img class="img-fluid mb-1" src="../assets/imgs/chart-candle.png" alt="" style="filter: invert(100%);">
+				</button>
 				<section
-					class="d-none font-signika-negative text-light d-md-grid gap-2 h-100 position-fixed end-0 overflow-scroll bg-dark-200 h-100"
-					style="width: 300px;">
+					class="toggle-tab-music font-signika-negative text-light d-sm-grid grid gap-2 h-100 position-fixed end-0 overflow-scroll bg-dark-200 h-100 tab-music"
+					style="width: 300px;z-index: 999;">
 					<div class="g-col-12 h-100 flex-shrink-0 ">
 						<div class="border-0 w-100 d-flex flex-column align-items-center justify-content-center pt-4">
 							<h6 class="font-signika-negative text-headding text-light mb-4 w-100 ps-4 fw-bold fs-4">Now playing</h6>
@@ -163,26 +166,31 @@
 					<div>
 						<h6 class="fw-bold text-light mx-3 mx-lg-0 mt-3 my-3">Home</h6>
 					</div>
-					<div>
-						<div class="slide-wrapper container overflow-scroll p-0">
-							<div class="slider-main d-flex h-100 overflow-scroll gap-2">
-								<div class="slider-item flex-shrink-0 rounded-3 d-flex flex-column justify-content-end p-4"
-									style="width:350px;height:220px">
+					<div class="position-relative">
+						<div class="slider-wrapper container overflow-scroll p-0 position-relative">
+							<div class="slider-main d-flex h-100 gap-2 position-relative">
+								<div class="slider-item flex-shrink-0 rounded-3 d-flex flex-column justify-content-end p-4">
 									<p class="text-truncate fs-5">New album by imagine Dragon</p>
 									<h2 class="fs-1 fw-bold h-50">Mercury: Act 1</h2>
 								</div>
-								<div class="slider-item flex-shrink-0 rounded-3 d-flex flex-column justify-content-end p-4"
-									style="width:350px;height:220px">
+								<div class="slider-item flex-shrink-0 rounded-3 d-flex flex-column justify-content-end p-4">
 									<p class="text-truncate fs-5">New album by imagine Dragon</p>
 									<h2 class="fs-1 fw-bold h-50">Music of the spheres</h2>
 								</div>
-								<div class="slider-item flex-shrink-0 rounded-3 d-flex flex-column justify-content-end p-4"
-									style="width:350px;height:220px">
+								<div class="slider-item flex-shrink-0 rounded-3 d-flex flex-column justify-content-end p-4">
 									<p class="text-truncate fs-5">New album by imagine Dragon</p>
 									<h2 class="fs-1 fw-bold h-50">Mercury: Act 1</h2>
 								</div>
 							</div>
 						</div>
+						<button
+							class="next-slide rounded-circle bg-light text-black icon fs-4 position-absolute top-50 end-0 translate-middle-y me-2 cursor-pointer border border-0">
+							<ion-icon name="chevron-forward-outline"></ion-icon>
+						</button>
+						<button
+							class="prev-slide rounded-circle bg-light text-black icon fs-4 position-absolute top-50 start-0 translate-middle-y ms-2 cursor-pointer border border-0">
+							<ion-icon name="chevron-back-outline"></ion-icon>
+						</button>
 					</div>
 					<div class="grid gap-0 overflow-lg-hidden flex-lg-shrink-1 flex-lg-grow-1 pt-3">
 						<div class="g-col-lg-6 g-col-12 me-5 p-4 p-lg-0">
@@ -279,7 +287,6 @@
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 	<script type="module" src=".././assets/js/index.js"></script>
-	<!-- <script type="module" src=".././assets/js/music.js"></script> -->
 	<script type="module" src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
 </body>

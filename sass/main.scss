@@ -66,7 +66,8 @@ a {
   width: 250px !important;
   transition: 0.3s;
 }
-.xy-36{
+
+.xy-36 {
   height: 36px;
   width: 36px;
 }
@@ -171,11 +172,11 @@ nav {
   color: $purple-700;
 }
 
-button {
-  &:hover {
-    color: $purple  !important;
-  }
-}
+// button {
+//   &:hover {
+//     color: $purple  !important;
+//   }
+// }
 
 
 .control-icon {
@@ -206,29 +207,36 @@ button {
     }
   }
 }
-.cd-thumb{
+
+.cd-thumb {
   flex-shrink: 0;
-  img{
+
+  img {
     object-fit: cover;
     height: 100%;
 
   }
 }
+
 .active-song {
   background-color: $purple;
   color: $white  !important;
-  .cd-thumb{
-    animation: cd 10s linear infinite ;
+
+  .cd-thumb {
+    animation: cd 10s linear infinite;
   }
+
   h6 {
     color: $white  !important;
   }
 }
+
 @keyframes cd {
-  from{
-    transform : rotate(0deg) ;
+  from {
+    transform: rotate(0deg);
   }
-  100%{
+
+  100% {
     transform: rotate(360deg);
   }
 }
@@ -246,89 +254,132 @@ button {
     color: $white  !important;
   }
 }
-.cd-img{
+
+.cd-img {
   transition: height 0.05s;
 }
-main{
+
+main {
   background-color: $dark;
 }
+
 .bg-dark-200 {
   background-color: $dark-200;
 }
-.font-signika-negative{
+
+.font-signika-negative {
   font-family: 'Signika Negative', sans-serif;
 }
-.slider-item{
+
+.slider-item {
   background-image: url(../assets/imgs/background.png);
   background-repeat: no-repeat;
-    background-size: cover;
+  background-size: cover;
 }
-.btn-toggle-play{
+
+.btn-toggle-play {
   background-image: url(../assets/imgs/background.png);
   background-repeat: no-repeat;
   background-size: cover;
   height: 50px !important;
   width: 50px !important;
 }
-.form-range::-webkit-slider-thumb{
+
+.form-range::-webkit-slider-thumb {
   background-image: url(../assets/imgs/background.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 .form-range::-webkit-slider-runnable-track {
   -webkit-appearance: none;
   background-color: $white;
 }
- 
+
+.slider-item {
+  width: 250px;
+  height: 220px;
+  transition: 0.5s;
+}
+.tab-music {
+  transition: 0.5s;
+  visibility: visible !important;
+  opacity: 1;
+}
+
+.toggle-tab-music {
+  transition: 0.5s;
+  visibility: hidden !important;
+  opacity: 0;
+}
 
 @include media-breakpoint-up(sm) {
-  .overflow-sm-scroll{
+  .overflow-sm-scroll {
     overflow: scroll !important;
   }
-  .overflow-sm-hidden{
+
+  .overflow-sm-hidden {
     overflow: hidden !important;
   }
-  
+
+  .main-content {
+    width: calc(100% - 300px);
+  }
+    .toggle-tab-music {
+      transition: 0.5s;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
 }
 
 @include media-breakpoint-up(md) {
   .overflow-md-scroll {
-      overflow: scroll !important;
-    }
-  
-    .overflow-md-hidden {
-      overflow: hidden !important;
-    }
-        .main-content {
-          width: calc(100% - 300px);
-        }
+    overflow: scroll !important;
+  }
+
+  .slider-item {
+    width: 300px;
+  }
+
+  .overflow-md-hidden {
+    overflow: hidden !important;
+  }
+
+
 }
 
 @include media-breakpoint-up(lg) {
   .overflow-lg-scroll {
-      overflow: scroll !important;
-    }
-  
-    .overflow-lg-hidden {
-      overflow: hidden !important;
-    }
+    overflow: scroll !important;
+  }
+
+  .overflow-lg-hidden {
+    overflow: hidden !important;
+  }
+
+  .slider-item {
+    width: 410px;
+  }
 }
 
 
 @include media-breakpoint-up(xl) {
-  .overflow-xl-scroll{
+  .overflow-xl-scroll {
     overflow: scroll !important;
   }
-  .overflow-xl-hidden{
+
+  .overflow-xl-hidden {
     overflow: hidden !important;
   }
 }
 
 @include media-breakpoint-up(xxl) {
-  .overflow-xxl-scroll{
+  .overflow-xxl-scroll {
     overflow: scroll !important;
   }
-  .overflow-xxl-hidden{
+
+  .overflow-xxl-hidden {
     overflow: hidden !important;
   }
 }
+
